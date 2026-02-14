@@ -244,14 +244,19 @@ body{
 
 /* SECTIONS */
 .section{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 90px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;  /* 🔥 antes 90px */
 }
+
 
 .section-head{
   margin-bottom: 26px;
 }
+.game-section{
+    padding: 45px 20px;
+}
+
 
 .section-head h2{
   font-family: "Syne", system-ui, sans-serif;

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goofyathlon — Alberte Díaz</title>
+  <link rel="icon" href="images/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./style.css?v=3">
+</head>
+
+<body>
+
+<!-- TOPBAR (simple) -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html#home">Alberte Díaz</a>
+
+    <nav class="nav-simple" aria-label="Navigation">
+      <a href="index.html#home" class="nav-link">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO / GAME INFO -->
+  <section class="game-hero">
+    <div class="game-hero-inner">
+
+      <h1 class="game-title">Goofyathlon</h1>
+
+      <div class="game-hero-grid">
+
+        <!-- Cover -->
+        <div class="game-cover-big">
+          <img src="Images/goofycover.png" alt="Goofyathlon cover">
+        </div>
+
+        <!-- Info -->
+        <div class="game-meta">
+          <div class="meta-row">
+            <div class="meta-label">ROLE:</div>
+            <div class="meta-value">Programmer & Designer</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">GAME JAM:</div>
+            <div class="meta-value">Hackathon 2025 Madrid in Game & Voxel School</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">PLATFORM:</div>
+            <div class="meta-value">PC (Itch.io) & Mobile (as a controller)</div>
+          </div>
+
+          
+        </div>
+
+      </div>
+
+      <!-- Platform Buttons -->
+      <div class="platform-buttons">
+        
+        <a class="platform-btn" href="https://eddricman.itch.io/goofyathlon" target="_blank" rel="noopener">
+          <img src="images/icons/itchio.jpg" alt="">
+          
+        </a>
+        
+
+<!--        <a class="platform-btn github" href="https://github.com" target="_blank" rel="noopener">-->
+<!--          <img src="images/icons/github.svg" alt="">-->
+<!--          <span>Github Source Code</span>-->
+<!--        </a>-->
+
+        <!-- Añade más si quieres -->
+        <!--
+        <a class="platform-btn steam" href="#" target="_blank" rel="noopener">
+          <img src="images/icons/steam.svg" alt="">
+          <span>Steam Page</span>
+        </a>
+        -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GAMEPLAY -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>GAMEPLAY</h2>
+    </div>
+
+    <div class="video-wrap">
+      <!-- Cambia el ID del vídeo -->
+      <div class="video-wrap">
+        <iframe
+                src="https://youtube.com/embed/__MLnjPaMEM?si=rCRs9e3Crh8Ci1UF"
+                title="Goofyathlon Trailer"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>DESCRIPTION</h2>
+    </div>
+
+    <div class="game-description">
+
+      <p>This game is built around a collection of dynamic minigames focused on movement and reaction time, where players compete to achieve the highest possible score. Each challenge is designed to test coordination, timing, and precision through fast-paced and engaging gameplay.</p>
+
+      <p>The minigames are intuitive and easy to learn, making the experience accessible to all types of players while still offering room for skill improvement and mastery. The design emphasizes clarity, responsiveness, and immediate feedback to maintain a fun and competitive atmosphere.</p>
+
+      <p>A key feature of the project is its innovative control system. Players can take control of their character using body movement, as the main control scheme was developed to use a mobile phone as a motion-based controller (instructions are included in the README file). The game can also be played using a traditional keyboard setup.</p>
+
+      <p><strong>My role in the project</strong> was primarily Programmer and Designer. I was responsible for implementing the core gameplay systems, developing the movement control logic, integrating the mobile controller functionality, and designing the structure and mechanics of the minigames to ensure both accessibility and engaging gameplay flow.</p>
+
+    </div>
+
+
+
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>SCREENSHOTS</h2>
+    </div>
+
+    <div class="shots-grid">
+      <img src="images/goofy1.png" alt="Screenshot 1">
+      <img src="images/goofy2.png" alt="Screenshot 2">
+      <img src="images/goofy3.png" alt="Screenshot 3">
+      <img src="images/goofy4.png" alt="Screenshot 4">
+      <img src="images/goofy5.png" alt="Screenshot 4">
+      <img src="images/goofy6.png" alt="Screenshot 4">
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Alberte Díaz</p>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
