@@ -124,14 +124,6 @@ body{
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* HOME */
-.home{
-    padding-top: 84px; /* para que no tape la topbar */
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
 .home-inner{
     width: 100%;
     padding: 140px 20px 60px;
@@ -139,43 +131,49 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+
     text-align: center;
-    gap: 40px;
+    gap: 36px;
 }
-
-
 
 .home-text{
-    max-width: 700px;
+    max-width: 780px;
     width: 100%;
+    margin: 0 auto;   /* 🔥 clave */
 }
-
-.cta-row{
-    justify-content: center;
-}
-
-
 
 .home-text h1{
     font-family: "Syne", system-ui, sans-serif;
     font-size: clamp(3rem, 7vw, 5.2rem);
-    line-height: 1.02;
+    line-height: 1.05;
     letter-spacing: -0.03em;
+    white-space: nowrap;
+    margin: 0 auto;
 }
 
 .lead{
-    margin-top: 22px;
+    margin: 24px auto 0;  /* 🔥 centra visualmente */
+    max-width: 60ch;
     color: var(--muted);
     font-size: 1.18rem;
-    max-width: 52ch;
 }
 
 .cta-row{
-    margin-top: 26px;
+    margin-top: 28px;
     display: flex;
+    justify-content: center;
     gap: 12px;
-    flex-wrap: wrap;
 }
+.btn.cv{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn.cv:hover{
+    background: rgba(255,255,255,0.18);
+}
+
 
 
 
