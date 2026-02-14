@@ -136,6 +136,12 @@ body{
     text-align: center;
     gap: 36px;
 }
+@media (max-width: 600px){
+    .home-inner{
+        padding-top: 180px;
+    }
+}
+
 
 .home-text{
     max-width: 780px;
