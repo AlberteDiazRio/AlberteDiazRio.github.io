@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>No Way Up — Alberte Díaz</title>
+  <link rel="icon" href="images/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./style.css?v=3">
+</head>
+
+<body>
+
+<!-- TOPBAR (simple) -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html#home">Alberte Díaz</a>
+
+    <nav class="nav-simple" aria-label="Navigation">
+      <a href="index.html#home" class="nav-link">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO / GAME INFO -->
+  <section class="game-hero">
+    <div class="game-hero-inner">
+
+      <h1 class="game-title">No Way Up</h1>
+
+      <div class="game-hero-grid">
+
+        <!-- Cover -->
+        <div class="game-cover-big">
+          <img src="Images/nowayupcover.png" alt="No Way Up cover">
+        </div>
+
+        <!-- Info -->
+        <div class="game-meta">
+          <div class="meta-row">
+            <div class="meta-label">ROLE:</div>
+            <div class="meta-value">Programmer</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">GAME JAM:</div>
+            <div class="meta-value">Hack Jam 2026 Madrid in Game & 42 Madrid</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">PLATFORM:</div>
+            <div class="meta-value">PC (Itch.io)</div>
+          </div>
+
+          
+        </div>
+
+      </div>
+
+      <!-- Platform Buttons -->
+      <div class="platform-buttons">
+        
+        <a class="platform-btn" href="https://alberte-diaz.itch.io/no-way-up" target="_blank" rel="noopener">
+          <img src="images/icons/itchio.jpg" alt="">
+          
+        </a>
+        
+
+<!--        <a class="platform-btn github" href="https://github.com" target="_blank" rel="noopener">-->
+<!--          <img src="images/icons/github.svg" alt="">-->
+<!--          <span>Github Source Code</span>-->
+<!--        </a>-->
+
+        <!-- Añade más si quieres -->
+        <!--
+        <a class="platform-btn steam" href="#" target="_blank" rel="noopener">
+          <img src="images/icons/steam.svg" alt="">
+          <span>Steam Page</span>
+        </a>
+        -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GAMEPLAY -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>GAMEPLAY</h2>
+    </div>
+
+    <div class="video-wrap">
+      <!-- Cambia el ID del vídeo -->
+      <div class="video-wrap">
+        <iframe
+                src="https://youtube.com/embed/RtveCykoOa4?si=4qG7caHW8D2M5cVC"
+                title="No Way Up Trailer"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>DESCRIPTION</h2>
+    </div>
+
+    <div class="game-description">
+
+      <p>This game follows the journey of two friends helping a third friend in a wheelchair navigate public spaces filled with invisible barriers — broken elevators, stairways without alternatives, and ramps that are impossible to climb.</p>
+
+      <p>Each level introduces increasingly demanding obstacles that require faster reactions and tighter coordination. Combined with intentionally clumsy physics and ragdoll-based character movement, every attempt becomes a blend of challenge and chaotic comedy.</p>
+
+      <p>As the experience unfolds, the narrative grows from this shared journey, highlighting how something as simple as moving through everyday spaces can become a struggle, and how cooperation becomes not just helpful, but essential.</p>
+
+      <p><strong>My role in the project</strong> was primarily Programmer. I was responsible for implementing core gameplay systems, character controls, physics interactions, and cooperative mechanics. I worked on refining the ragdoll behavior to balance unpredictability with responsiveness, ensuring the experience remained both challenging and intentionally humorous while maintaining gameplay clarity.</p>
+
+    </div>
+
+
+
+
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>SCREENSHOTS</h2>
+    </div>
+
+    <div class="shots-grid">
+      <img src="images/noway1.png" alt="Screenshot 1">
+      <img src="images/noway2.png" alt="Screenshot 2">
+      <img src="images/noway3.png" alt="Screenshot 3">
+      <img src="images/noway4.png" alt="Screenshot 4">
+
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Alberte Díaz</p>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

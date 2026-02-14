@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mask Heist — Alberte Díaz</title>
+  <link rel="icon" href="images/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="./style.css?v=3">
+</head>
+
+<body>
+
+<!-- TOPBAR (simple) -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html#home">Alberte Díaz</a>
+
+    <nav class="nav-simple" aria-label="Navigation">
+      <a href="index.html#home" class="nav-link">Home</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO / GAME INFO -->
+  <section class="game-hero">
+    <div class="game-hero-inner">
+
+      <h1 class="game-title">Mask heist</h1>
+
+      <div class="game-hero-grid">
+
+        <!-- Cover -->
+        <div class="game-cover-big">
+          <img src="Images/maskheistcover.png" alt="Mask Heist cover">
+        </div>
+
+        <!-- Info -->
+        <div class="game-meta">
+          <div class="meta-row">
+            <div class="meta-label">ROLE:</div>
+            <div class="meta-value">Programmer, 3D Artist & Music</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">GAME JAM:</div>
+            <div class="meta-value">Global Game Jam 2026</div>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-label">PLATFORM:</div>
+            <div class="meta-value">PC (Itch.io)</div>
+          </div>
+
+          
+        </div>
+
+      </div>
+
+      <!-- Platform Buttons -->
+      <div class="platform-buttons">
+        
+        <a class="platform-btn" href="https://alberte-diaz.itch.io/mask-heist" target="_blank" rel="noopener">
+          <img src="images/icons/itchio.jpg" alt="">
+          
+        </a>
+        
+
+<!--        <a class="platform-btn github" href="https://github.com" target="_blank" rel="noopener">-->
+<!--          <img src="images/icons/github.svg" alt="">-->
+<!--          <span>Github Source Code</span>-->
+<!--        </a>-->
+
+        <!-- Añade más si quieres -->
+        <!--
+        <a class="platform-btn steam" href="#" target="_blank" rel="noopener">
+          <img src="images/icons/steam.svg" alt="">
+          <span>Steam Page</span>
+        </a>
+        -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GAMEPLAY -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>GAMEPLAY</h2>
+    </div>
+
+    <div class="video-wrap">
+      <!-- Cambia el ID del vídeo -->
+      <div class="video-wrap">
+        <iframe
+                src="https://youtube.com/embed/yhP3sfeypdQ?si=77MigRuL1F6lGdYC"
+                title="Mask Heist Trailer"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- DESCRIPTION -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>DESCRIPTION</h2>
+    </div>
+
+    <div class="game-description">
+
+      <p><strong>Mask Heist</strong> is a puzzle-stealth game set during a single night inside a grand museum. Players explore themed exhibition rooms and carefully plan their perfect heist while avoiding detection and solving environmental challenges.</p>
+
+      <p>The core mechanic revolves around magical masks that unlock new abilities and ways to interact with the world. Each mask transforms how the player moves, hides, or manipulates the environment, encouraging experimentation and strategic thinking. By switching masks, players can adapt their playstyle and discover creative solutions to obstacles.</p>
+
+      <p><strong>My role in the project</strong> was multidisciplinary. I worked on gameplay programming, implementing core mechanics, mask abilities, and stealth systems. I was also responsible for 3D art production, creating assets and contributing to the visual identity of the environments.</p>
+
+      <p>Additionally, I composed and implemented the game’s music, designing the soundtrack to reinforce tension, atmosphere, and player immersion throughout the heist experience.</p>
+
+    </div>
+
+
+
+
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="section game-section">
+    <div class="section-head centered">
+      <h2>SCREENSHOTS</h2>
+    </div>
+
+    <div class="shots-grid">
+      <img src="images/mask1.png" alt="Screenshot 1">
+      <img src="images/mask2.png" alt="Screenshot 2">
+      <img src="images/mask3.png" alt="Screenshot 3">
+      <img src="images/mask4.png" alt="Screenshot 4">
+      <img src="images/mask5.png" alt="Screenshot 4">
+      <img src="images/mask6.png" alt="Screenshot 4">
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Alberte Díaz</p>
+  </footer>
+
+</main>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
