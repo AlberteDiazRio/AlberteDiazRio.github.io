@@ -6,33 +6,39 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: red !important;
+    background: #0f0f1a;
     color: white;
     line-height: 1.6;
 }
 
-/* HERO SECTION */
 .hero {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at top, #1f1f3a, #0f0f1a);
-    text-align: center;
+    padding: 0 10%;
+    background: #0f0f1a;
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 800;
-    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    color: #6c63ff;
 }
 
 .hero p {
-    margin-top: 10px;
+    margin-top: 30px;
     font-size: 1.2rem;
-    color: #aaa;
+    color: #888;
 }
+
 
 /* PROJECTS */
 .projects {
