@@ -442,21 +442,184 @@ body{
     padding: 18px 22px 22px;
 }
 
+.game-info h3,
+.game-info p{
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--accent);  /* 🔥 mismo violeta */
+}
+
+/* Título */
 .game-info h3{
     font-family: "Syne", system-ui, sans-serif;
     font-size: 1.35rem;
     letter-spacing: 0.02em;
     margin: 10px 0 10px;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 8px;
 }
 
+/* Subtítulo más suave */
 .game-info p{
-    color: rgba(255,255,255,0.70);
+    color: rgba(108, 99, 255, 0.6); /* 🔥 mismo color pero suave */
     font-weight: 600;
     margin-top: 8px;
 }
+
+.gold-game .game-info h3,
+.gold-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #d4af37;   /* dorado fuerte */
+    text-underline-offset: 2px;
+}
+
+.gold-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.gold-game .game-info p{
+    color: rgba(212, 175, 55, 0.55);  /* dorado suave */
+    text-decoration-thickness: 2px;
+}
+
+.red-game .game-info h3,
+.red-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #e10600;   /* 🔥 rojo fuerte */
+    text-underline-offset: 3px;
+}
+
+.red-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.red-game .game-info p{
+    color: rgba(225, 6, 0, 0.6);   /* 🔥 rojo suave */
+    text-decoration-thickness: 2px;
+}
+
+.sand-game .game-info h3,
+.sand-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #7a8f3c;   /* 🔥 verde arena */
+    text-underline-offset: 3px;
+}
+
+.sand-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.sand-game .game-info p{
+    color: rgba(122, 143, 60, 0.6);   /* 🔥 verde arena suave */
+    text-decoration-thickness: 2px;
+}
+
+.amber-game .game-info h3,
+.amber-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #c58b2a;  /* 🔥 ámbar apagado */
+    text-underline-offset: 3px;
+}
+
+.amber-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.amber-game .game-info p{
+    color: rgba(197, 139, 42, 0.55);  /* 🔥 versión suave */
+    text-decoration-thickness: 2px;
+}
+
+.orange-game .game-info h3,
+.orange-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #ff6a00;   /* 🔥 naranja vivo */
+    text-underline-offset: 3px;
+}
+
+.orange-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.orange-game .game-info p{
+    color: rgba(255, 122, 24, 0.55);
+    /* 🔥 naranja suave */
+    text-decoration-thickness: 2px;
+}
+
+.purple-game .game-info h3,
+.purple-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #a259ff;   /* 🔥 morado */
+    text-underline-offset: 3px;
+}
+
+.purple-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.purple-game .game-info p{
+    color: rgba(162, 89, 255, 0.55);   /* 🔥 morado suave */
+    text-decoration-thickness: 2px;
+}
+
+.pink-game .game-info h3,
+.pink-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #ff2f9e;   /* 🔥 rosa más vivo */
+    text-underline-offset: 3px;
+}
+
+.pink-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.pink-game .game-info p{
+    color: rgba(255, 47, 158, 0.6);  /* 🔥 rosa suave */
+    text-decoration-thickness: 2px;
+}
+
+
+.pink-game .game-info p{
+    color: rgba(255, 77, 166, 0.55);  /* 🔥 rosa suave */
+    text-decoration-thickness: 2px;
+}
+
+.muted-pink-game .game-info h3,
+.muted-pink-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #c06c9b;   /* 🔥 rosa apagado */
+    text-underline-offset: 3px;
+}
+
+.muted-pink-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.muted-pink-game .game-info p{
+    color: rgba(192, 108, 155, 0.55);  /* 🔥 rosa suave */
+    text-decoration-thickness: 2px;
+}
+
+.aqua-game .game-info h3,
+.aqua-game .game-info p{
+    text-decoration: underline;
+    text-decoration-color: #2ec4b6;   /* 🔥 aguamarino fuerte */
+    text-underline-offset: 3px;
+}
+
+.aqua-game .game-info h3{
+    text-decoration-thickness: 3px;
+}
+
+.aqua-game .game-info p{
+    color: rgba(46, 196, 182, 0.6);  /* 🔥 aguamarino suave */
+    text-decoration-thickness: 2px;
+}
+
+
+
+
+
 
 /* Responsive: 1 columna */
 @media (max-width: 900px){
@@ -728,7 +891,7 @@ body{
 
 .meta-row{
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 180px 1fr;
     gap: 16px;
     padding: 10px 0;
     border-bottom: 1px solid rgba(255,255,255,0.08);
