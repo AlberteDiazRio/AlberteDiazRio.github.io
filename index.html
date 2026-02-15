@@ -836,19 +836,54 @@
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
-    // Función para dibujar waveform
+    // Crear gradiente
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, "#ff9a9e");
+    gradient.addColorStop(0.5, "#fad0c4");
+    gradient.addColorStop(1, "#fbc2eb");
+
+    // Dibujar waveform con curvas suaves
     function drawWave(progress = 0) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const w = canvas.width / waveformData.length;
+
+      ctx.beginPath();
+      const sliceWidth = canvas.width / (waveformData.length - 1);
       waveformData.forEach((v, i) => {
-        const x = i * w;
-        const y = (v * canvas.height) / 2;
-        ctx.fillStyle = i / waveformData.length < progress ? "#0f0" : "#444";
-        ctx.fillRect(x, (canvas.height - y) / 2, w, y);
+        const x = i * sliceWidth;
+        const y = canvas.height / 2 - v * canvas.height / 2; // parte superior
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
       });
+
+      // Parte inferior (reflejo invertido)
+      for (let i = waveformData.length - 1; i >= 0; i--) {
+        const v = waveformData[i];
+        const x = i * sliceWidth;
+        const y = canvas.height / 2 + v * canvas.height / 2; // parte inferior
+        ctx.lineTo(x, y);
+      }
+
+      ctx.closePath();
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Glow que sigue el progreso
+      ctx.beginPath();
+      waveformData.forEach((v, i) => {
+        const x = i * sliceWidth;
+        const y = canvas.height / 2 - v * canvas.height / 2;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.strokeStyle = "rgba(255,255,255,0.5)";
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = "#fff";
+      ctx.stroke();
+      ctx.shadowBlur = 0;
     }
 
-    // Cargar waveform usando Web Audio API
+    // Cargar waveform
     function loadWaveform() {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       fetch(audio.src)
@@ -856,7 +891,7 @@
               .then(buf => audioCtx.decodeAudioData(buf))
               .then(decoded => {
                 const rawData = decoded.getChannelData(0);
-                const samples = 100;
+                const samples = 200; // más muestras = más suave
                 const blockSize = Math.floor(rawData.length / samples);
                 waveformData = [];
                 for (let i = 0; i < samples; i++) {
@@ -872,18 +907,17 @@
 
     // Mostrar duración al cargar metadata
     audio.addEventListener("loadedmetadata", () => {
-      const duration = audio.duration;
-      timeDisplay.textContent = `0:00 / ${formatTime(duration)}`;
+      timeDisplay.textContent = `0:00 / ${formatTime(audio.duration)}`;
     });
 
-    // Formatear segundos a mm:ss
+    // Formatear tiempo
     function formatTime(sec) {
       const m = Math.floor(sec / 60);
       const s = Math.floor(sec % 60);
       return `${m}:${s.toString().padStart(2, "0")}`;
     }
 
-    // Actualizar tiempo y waveform mientras suena
+    // Actualizar waveform mientras suena
     function update() {
       const progress = audio.currentTime / audio.duration || 0;
       drawWave(progress);
@@ -891,7 +925,7 @@
       animationId = requestAnimationFrame(update);
     }
 
-    // Reproducir / pausar
+    // Play / pause
     playBtn.addEventListener("click", () => {
       if (audio.paused) {
         audio.play();
@@ -904,7 +938,7 @@
       }
     });
 
-    // Click en canvas para saltar
+    // Saltar al hacer click
     canvas.addEventListener("click", e => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -915,6 +949,7 @@
 
     loadWaveform();
   });
+
 
 </script>
 
