@@ -232,7 +232,7 @@
   <section class="section" id="music">
     <div class="section-head centered">
       <h2>Music</h2>
-      <p>Some tracks I composed for games, jams and personal projects.</p>
+      <p class="center-text">Some tracks I composed for games, jams and personal projects.</p> <!-- Agregamos la clase "center-text" -->
     </div>
 
     <div class="music-list">
@@ -527,6 +527,7 @@
 </script>
 
 <!-- HOME GAME SCRIPT -->
+<!-- HOME GAME SCRIPT -->
 <script>
   (() => {
     const wrap = document.getElementById("homeGame");
@@ -609,8 +610,9 @@
       wrap.classList.remove("game-over");
 
       // Reproducir música con volumen ajustado
+      gameAudio.currentTime = 0;
+      gameAudio.volume = 0.3;
       gameAudio.play();
-      gameAudio.volume = 0.3; // Establecer volumen al 30% de la capacidad máxima (ajústalo a tu gusto)
     }
 
     function stopGameAudio() {
@@ -666,6 +668,8 @@
       state.over = true;
       state.best = Math.max(state.best, Math.floor(state.score));
       wrap.classList.add("game-over");
+
+      // Detener la música al perder
       stopGameAudio();
     }
 
@@ -799,6 +803,9 @@
       state.over = false;
       wrap.classList.remove("is-playing");
       window.removeEventListener("resize", resizeCanvasToWrapper);
+
+      // Detener la música al cerrar
+      stopGameAudio();
     }
 
     wrap.addEventListener("click", (e) => {
@@ -828,9 +835,10 @@
       jump();
     }, { passive: false });
   })();
-
-
 </script>
+
+
+
 <script>
   document.querySelectorAll(".music-track").forEach(track => {
     const audio = track.querySelector("audio");
