@@ -83,6 +83,7 @@
                 alt="Imagen de portada / screenshot de proyecto"
         />
 
+        <audio id="gameAudio" src="audio/Tema_1.mp3" preload="auto"></audio>
         <!-- Canvas (oculto hasta click) -->
         <canvas id="homeCanvas"></canvas>
         <div class="game-jump-hint" id="jumpHint">Click to Jump</div>
@@ -531,6 +532,7 @@
     const wrap = document.getElementById("homeGame");
     const canvas = document.getElementById("homeCanvas");
     const exitBtn = document.getElementById("gameExit");
+    const gameAudio = document.getElementById("gameAudio"); // Referencia al audio del juego
 
     const ctx = canvas.getContext("2d");
 
@@ -564,28 +566,22 @@
         w: 52,
         h: 60,
         onGround: true,
-
-        // hitbox real (más pequeño)
         hitOffsetX: 8,
         hitOffsetY: 6,
         hitW: 36,
         hitH: 48
       },
-
       obs: [],
       frame: 0,
-      nextGap: randGap(),   // ✅ NUEVO
+      nextGap: randGap(),
     };
-
 
     function rand(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     function randGap() {
-      // distancia entre obstáculos (px). Ajusta a tu gusto.
       return 260 + Math.random() * 260; // 260–520
     }
-
 
     function resizeCanvasToWrapper() {
       const rect = wrap.getBoundingClientRect();
@@ -608,12 +604,19 @@
       state.frame = 0;
       state.dino.vy = 0;
       state.dino.onGround = true;
-      state.nextGap = randGap();   // ✅ NUEVO
+      state.nextGap = randGap();
       resizeCanvasToWrapper();
       wrap.classList.remove("game-over");
 
+      // Reproducir música con volumen ajustado
+      gameAudio.play();
+      gameAudio.volume = 0.3; // Establecer volumen al 30% de la capacidad máxima (ajústalo a tu gusto)
     }
 
+    function stopGameAudio() {
+      gameAudio.pause();
+      gameAudio.currentTime = 0; // Volver al principio de la música
+    }
 
     function spawnObstacle() {
       const rect = wrap.getBoundingClientRect();
@@ -625,17 +628,12 @@
         y: state.groundY - h,
         w,
         h,
-
-        // HITBOX MÁS PEQUEÑA (ajústala a tu sprite)
         hitOffsetX: w * 0.2,
         hitOffsetY: h * 0.15,
         hitW: w * 0.6,
         hitH: h * 0.7
       });
     }
-
-
-
 
     function hit(a, b) {
       const ax = a.x + a.hitOffsetX;
@@ -656,11 +654,6 @@
       );
     }
 
-
-
-
-
-
     function jump() {
       if (!playing || state.over) return;
       if (state.dino.onGround) {
@@ -672,18 +665,16 @@
     function gameOver() {
       state.over = true;
       state.best = Math.max(state.best, Math.floor(state.score));
-      wrap.classList.add("game-over");   // 👈 añade esto
+      wrap.classList.add("game-over");
+      stopGameAudio();
     }
-
 
     function update() {
       const rect = wrap.getBoundingClientRect();
       state.frame++;
 
-      // dificultad suave
       if (state.frame % 140 === 0) state.speed += 0.25;
 
-      // Física dino
       state.dino.vy += state.gravity;
       state.dino.y += state.dino.vy;
 
@@ -693,12 +684,9 @@
         state.dino.onGround = true;
       }
 
-      // Obstáculos: mover y limpiar
       for (const o of state.obs) o.x -= state.speed;
       while (state.obs.length && state.obs[0].x + state.obs[0].w < -60) state.obs.shift();
 
-      // ✅ Spawn por distancia aleatoria (no por “cada X” fijo)
-      // Spawn (✅ separaciones aleatorias correctas)
       if (state.obs.length === 0) {
         if (state.frame > 25) {
           spawnObstacle();
@@ -707,15 +695,12 @@
       } else {
         const last = state.obs[state.obs.length - 1];
 
-        // spawnea cuando el último ya ha avanzado "nextGap" hacia dentro
         if (last.x < rect.width - state.nextGap) {
           spawnObstacle();
           state.nextGap = randGap();
         }
       }
 
-
-      // Colisión
       for (const o of state.obs) {
         if (hit(state.dino, o)) {
           gameOver();
@@ -730,14 +715,12 @@
       const rect = wrap.getBoundingClientRect();
       ctx.clearRect(0, 0, rect.width, rect.height);
 
-      // Fondo suave
       const g = ctx.createLinearGradient(0, 0, 0, rect.height);
       g.addColorStop(0, "rgba(108,99,255,0.12)");
       g.addColorStop(1, "rgba(0,0,0,0)");
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, rect.width, rect.height);
 
-      // Suelo
       ctx.strokeStyle = "rgba(255,255,255,0.28)";
       ctx.lineWidth = 4;
       ctx.beginPath();
@@ -745,7 +728,6 @@
       ctx.lineTo(rect.width, state.groundY + 2);
       ctx.stroke();
 
-      // Obstáculos (cactus)
       for (const o of state.obs) {
         if (assetsReady >= 2) {
           ctx.drawImage(cactusImg, o.x, o.y, o.w, o.h);
@@ -753,22 +735,8 @@
           ctx.fillStyle = "rgba(255,255,255,0.75)";
           ctx.fillRect(o.x, o.y, o.w, o.h);
         }
-        // ctx.strokeStyle = "red";
-        // ctx.lineWidth = 2;
-        // ctx.strokeRect(o.x, o.y, o.w, o.h);
-        //
-        // // DEBUG: collider del dino
-        // const ax = state.dino.x + state.dino.hitOffsetX;
-        // const ay = state.dino.y + state.dino.hitOffsetY;
-        //
-        // ctx.strokeStyle = "lime";
-        // ctx.lineWidth = 2;
-        // ctx.strokeRect(ax, ay, state.dino.hitW, state.dino.hitH);
-
-
       }
 
-      // Dino
       if (assetsReady >= 2) {
         ctx.drawImage(dinoImg, state.dino.x, state.dino.y, state.dino.w, state.dino.h);
       } else {
@@ -776,7 +744,6 @@
         ctx.fillRect(state.dino.x, state.dino.y, state.dino.w, state.dino.h);
       }
 
-      // HUD
       ctx.fillStyle = "rgba(255,255,255,0.92)";
       ctx.font = "700 18px Space Grotesk, system-ui, sans-serif";
       ctx.textAlign = "left";
@@ -784,7 +751,6 @@
       ctx.fillStyle = "rgba(255,255,255,0.65)";
       ctx.fillText(`Best: ${state.best}`, 18, 52);
 
-      // Game Over overlay (sin teclado)
       if (state.over) {
         ctx.fillStyle = "rgba(0,0,0,0.45)";
         ctx.fillRect(0, 0, rect.width, rect.height);
@@ -805,7 +771,6 @@
     function loop() {
       if (!playing) return;
 
-      // ✅ si está en game over: NO actualiza (freeze), pero sigue dibujando
       if (!state.over) update();
       draw();
 
@@ -815,7 +780,6 @@
     function start() {
       if (playing) return;
 
-      // esperamos sprites (si no, igual funciona con rects mientras cargan)
       wrap.classList.add("is-playing");
       playing = true;
 
@@ -837,7 +801,6 @@
       window.removeEventListener("resize", resizeCanvasToWrapper);
     }
 
-    // Click en el contenedor si NO estás jugando => start
     wrap.addEventListener("click", (e) => {
       if (e.target === exitBtn) return;
       if (!playing) start();
@@ -848,7 +811,6 @@
       stop();
     });
 
-    // Tap/click dentro del canvas: jump / restart
     canvas.addEventListener("pointerdown", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -866,6 +828,8 @@
       jump();
     }, { passive: false });
   })();
+
+
 </script>
 <script>
   document.querySelectorAll(".music-track").forEach(track => {
@@ -1018,106 +982,103 @@
 
 
 </script>
-<!--<script>-->
-<!--  document.addEventListener("DOMContentLoaded", () => {-->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tracks = document.querySelectorAll(".music-track");
+    let currentTrack = null;
 
-<!--    const tracks = document.querySelectorAll(".music-track");-->
-<!--    let currentTrack = null;-->
+    tracks.forEach(track => {
+      const audio = track.querySelector("audio");
+      const playBtn = track.querySelector(".play-btn");
+      const timeSpan = track.querySelector(".time");
+      const canvas = track.querySelector(".waveform");
+      const ctx = canvas.getContext("2d");
 
-<!--    tracks.forEach(track => {-->
+      let animationId;
+      let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      let analyser = audioContext.createAnalyser();
+      let source = audioContext.createMediaElementSource(audio);
 
-<!--      const audio = track.querySelector("audio");-->
-<!--      const playBtn = track.querySelector(".play-btn");-->
-<!--      const volumeBtn = track.querySelector(".volume-btn");-->
-<!--      const volumeSlider = track.querySelector(".volume-slider");-->
-<!--      const canvas = track.querySelector(".waveform");-->
-<!--      const ctx = canvas.getContext("2d");-->
+      source.connect(analyser);
+      analyser.connect(audioContext.destination);
 
-<!--      let animationId;-->
-<!--      let audioContext = new (window.AudioContext || window.webkitAudioContext)();-->
-<!--      let analyser = audioContext.createAnalyser();-->
-<!--      let source = audioContext.createMediaElementSource(audio);-->
+      analyser.fftSize = 128;
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
 
-<!--      source.connect(analyser);-->
-<!--      analyser.connect(audioContext.destination);-->
+      // Control de volumen: establecer volumen por defecto
+      audio.volume = 0.5; // Volumen por defecto al 50%
 
-<!--      analyser.fftSize = 128;-->
-<!--      const bufferLength = analyser.frequencyBinCount;-->
-<!--      const dataArray = new Uint8Array(bufferLength);-->
+      function resizeCanvas() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
 
-<!--      function resizeCanvas(){-->
-<!--        canvas.width = canvas.offsetWidth;-->
-<!--        canvas.height = canvas.offsetHeight;-->
-<!--      }-->
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
 
-<!--      resizeCanvas();-->
-<!--      window.addEventListener("resize", resizeCanvas);-->
+      function draw() {
+        animationId = requestAnimationFrame(draw);
 
-<!--      function draw(){-->
-<!--        animationId = requestAnimationFrame(draw);-->
+        analyser.getByteFrequencyData(dataArray);
 
-<!--        analyser.getByteFrequencyData(dataArray);-->
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-<!--        ctx.clearRect(0, 0, canvas.width, canvas.height);-->
+        const barWidth = canvas.width / bufferLength;
+        let x = 0;
 
-<!--        const barWidth = canvas.width / bufferLength;-->
-<!--        let x = 0;-->
+        for (let i = 0; i < bufferLength; i++) {
+          const barHeight = (dataArray[i] / 255) * canvas.height;
 
-<!--        for(let i = 0; i < bufferLength; i++){-->
-<!--          const barHeight = (dataArray[i] / 255) * canvas.height;-->
+          ctx.fillStyle = "#6c63ff";
 
-<!--          ctx.fillStyle = "#6c63ff";-->
+          ctx.fillRect(
+                  x,
+                  canvas.height - barHeight,
+                  barWidth * 0.8,
+                  barHeight
+          );
 
-<!--          ctx.fillRect(-->
-<!--                  x,-->
-<!--                  canvas.height - barHeight,-->
-<!--                  barWidth * 0.8,-->
-<!--                  barHeight-->
-<!--          );-->
+          x += barWidth;
+        }
+      }
 
-<!--          x += barWidth;-->
-<!--        }-->
-<!--      }-->
+      playBtn.addEventListener("click", async () => {
+        if (audioContext.state === "suspended") {
+          await audioContext.resume();
+        }
 
-<!--      playBtn.addEventListener("click", async () => {-->
+        // Si hay otro track sonando → pararlo
+        if (currentTrack && currentTrack !== audio) {
+          currentTrack.pause();
+          document.querySelectorAll(".play-btn").forEach(btn => btn.textContent = "▶");
+        }
 
-<!--        if (audioContext.state === "suspended") {-->
-<!--          await audioContext.resume();-->
-<!--        }-->
+        if (audio.paused) {
+          audio.play();
+          playBtn.textContent = "❚❚";
+          draw();
+          currentTrack = audio;
+        } else {
+          audio.pause();
+          playBtn.textContent = "▶";
+          cancelAnimationFrame(animationId);
+        }
+      });
 
-<!--        // Si hay otro track sonando → pararlo-->
-<!--        if (currentTrack && currentTrack !== audio) {-->
-<!--          currentTrack.pause();-->
-<!--          document.querySelectorAll(".play-btn").forEach(btn => btn.textContent = "▶");-->
-<!--        }-->
+      audio.addEventListener("ended", () => {
+        playBtn.textContent = "▶";
+        cancelAnimationFrame(animationId);
+      });
 
-<!--        if (audio.paused) {-->
-<!--          audio.play();-->
-<!--          playBtn.textContent = "❚❚";-->
-<!--          draw();-->
-<!--          currentTrack = audio;-->
-<!--        } else {-->
-<!--          audio.pause();-->
-<!--          playBtn.textContent = "▶";-->
-<!--          cancelAnimationFrame(animationId);-->
-<!--        }-->
-<!--      });-->
+      // Aquí puedes agregar el control del volumen, ajustarlo según lo desees
+      // Ejemplo: reducir el volumen cuando se empieza a reproducir
+      audio.volume = 0.2; // Reduces el volumen al 20% cuando comienza a reproducirse
+    });
+  });
 
-<!--      audio.addEventListener("ended", () => {-->
-<!--        playBtn.textContent = "▶";-->
-<!--        cancelAnimationFrame(animationId);-->
-<!--      });-->
 
-<!--      // Control de volumen con el slider-->
-<!--      volumeSlider.addEventListener("input", () => {-->
-<!--        audio.volume = volumeSlider.value;-->
-<!--      });-->
-
-<!--    });-->
-
-<!--  });-->
-
-<!--</script>-->
+</script>
 
 </body>
 </html>
