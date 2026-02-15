@@ -1556,19 +1556,21 @@ body{
 }
 
 /* Estilo del slider (oculto por defecto) */
+/* Estilo del slider de volumen (oculto por defecto) */
 .volume-slider-container {
     display: none; /* Oculto por defecto */
     position: absolute;
-    top: 50px; /* Ajusta la posición según necesites */
+    top: -50px; /* Ajusta esta propiedad para ponerlo justo encima del botón */
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.7);
     padding: 10px;
     border-radius: 10px;
     z-index: 10;
-    width: 150px;
+    width: 120px;
 }
 
+/* Para que el slider no esté demasiado grande y encaje bien */
 .volume-slider-container input[type="range"] {
     width: 100%;
 }
@@ -1586,11 +1588,39 @@ body{
     color: #fff;
     font-size: 18px;
     transition: transform 0.2s ease;
+    position: relative;
 }
 
 .volume-btn:hover {
     transform: scale(1.1);
 }
+
+/* Si deseas que el slider esté a la derecha del botón de volumen, puedes usar esto */
+.custom-player .volume-btn {
+    position: relative;
+}
+
+.custom-player .volume-slider-container {
+    top: 0;
+    left: 100%; /* Lo posiciona al lado del botón de volumen */
+    transform: translateX(10px); /* Ajusta la distancia entre el botón y el slider */
+}
+
+/* Contenedor del volumen con un diseño más bonito */
+.volume-slider-container {
+    display: none;
+    position: absolute;
+    top: 50%; /* Posición encima del botón */
+    left: 100%; /* Justo a la derecha del botón */
+    transform: translateX(10px) translateY(-50%); /* Ajusta la distancia para que quede justo al lado */
+    width: 120px; /* Asegúrate de que tenga el tamaño adecuado */
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+
 
 
 
