@@ -265,6 +265,9 @@
           <canvas class="waveform"></canvas>
           <span class="time">0:00 / 0:00</span>
           <button class="volume-btn">🔊</button>
+          <div class="volume-slider-container">
+            <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="1">
+          </div>
         </div>
         <audio src="audio/Inicio.mp3" preload="auto"></audio>
       </article>
@@ -984,6 +987,7 @@
       const audio = track.querySelector("audio");
       const playBtn = track.querySelector(".play-btn");
       const volumeBtn = track.querySelector(".volume-btn");
+      const volumeSlider = track.querySelector(".volume-slider");
       const canvas = track.querySelector(".waveform");
       const ctx = canvas.getContext("2d");
 
@@ -1062,15 +1066,9 @@
         cancelAnimationFrame(animationId);
       });
 
-      // Aquí va la lógica para el botón de volumen
-      volumeBtn.addEventListener("click", () => {
-        if (audio.muted) {
-          audio.muted = false;
-          volumeBtn.textContent = "🔊"; // Volumen activado
-        } else {
-          audio.muted = true;
-          volumeBtn.textContent = "🔇"; // Volumen desactivado
-        }
+      // Control de volumen con el slider
+      volumeSlider.addEventListener("input", () => {
+        audio.volume = volumeSlider.value;
       });
 
     });
