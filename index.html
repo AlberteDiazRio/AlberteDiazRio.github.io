@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./style.css?v=3">
 </head>
 
-<body>
+<body class="page-home">
 
 <!-- NAVBAR -->
 <header class="topbar">
@@ -26,7 +26,9 @@
 
     <nav class="nav" aria-label="Navegación principal">
       <a href="#home" class="nav-link">Home</a>
-      <a href="#projects" class="nav-link">My projects</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#music" class="nav-link">Music</a>
+
       <a href="#about" class="nav-link">About Me</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
@@ -40,6 +42,8 @@
   <div class="mobile-nav" id="mobileNav" aria-hidden="true">
     <a href="#home" class="mobile-link">Home</a>
     <a href="#projects" class="mobile-link">My projects</a>
+    <a href="#music" class="mobile-link">Music</a>
+
     <a href="#about" class="mobile-link">About Me</a>
     <a href="#contact" class="mobile-link">Contact</a>
   </div>
@@ -80,7 +84,8 @@
 
         <!-- Canvas (oculto hasta click) -->
         <canvas id="homeCanvas"></canvas>
-        <div class="game-jump-hint">Click / Tap to Jump</div>
+        <div class="game-jump-hint" id="jumpHint">Click to Jump</div>
+
 
         <!-- Overlay hint -->
         <div class="game-hint" id="gameHint">Click to Play Minigame</div>
@@ -220,6 +225,46 @@
       </a>
     </div>
   </section>
+
+  <!-- MUSIC -->
+  <section class="section" id="music">
+    <div class="section-head centered">
+      <h2>Music</h2>
+      <p>Some tracks I composed for games, jams and personal projects.</p>
+    </div>
+
+    <div class="music-list">
+
+      <article class="music-track">
+        <h3>Track Title 01</h3>
+        <audio controls preload="none">
+          <source src="audio/track01.mp3" type="audio/mpeg">
+          <source src="audio/track01.ogg" type="audio/ogg">
+          Your browser does not support the audio element.
+        </audio>
+      </article>
+
+      <article class="music-track">
+        <h3>Track Title 02</h3>
+        <audio controls preload="none">
+          <source src="audio/track02.mp3" type="audio/mpeg">
+          <source src="audio/track02.ogg" type="audio/ogg">
+          Your browser does not support the audio element.
+        </audio>
+      </article>
+
+      <article class="music-track">
+        <h3>Track Title 03</h3>
+        <audio controls preload="none">
+          <source src="audio/track03.mp3" type="audio/mpeg">
+          <source src="audio/track03.ogg" type="audio/ogg">
+          Your browser does not support the audio element.
+        </audio>
+      </article>
+
+    </div>
+  </section>
+
 
   <!-- ABOUT -->
   <section class="section" id="about">
@@ -401,6 +446,8 @@
       state.dino.onGround = true;
       state.nextGap = randGap();   // ✅ NUEVO
       resizeCanvasToWrapper();
+      wrap.classList.remove("game-over");
+
     }
 
 
